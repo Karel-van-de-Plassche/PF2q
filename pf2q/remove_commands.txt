@@ -1,0 +1,3 @@
+rm /home/emc/plassche/FORT/FINESSE/finesse_/test_karel/OUTPUT/*.dat
+rm /home/emc/plassche/FORT/FINESSE/finesse_/test_karel/OUTPUT/*.log
+rm /home/emc/plassche/FORT/FINESSE/finesse_/test_karel/OUTPUT/*.inp
