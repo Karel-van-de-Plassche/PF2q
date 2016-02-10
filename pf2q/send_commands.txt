@@ -1,0 +1,1 @@
+ssh rs1 "ulimit -s unlimited && export PATH=$PATH:~/usr/local/bin && cd /home/emc/plassche/FORT/FINESSE/finesse_/test_karel/ && finesse"
