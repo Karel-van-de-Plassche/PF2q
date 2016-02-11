@@ -60,10 +60,8 @@ def make_run_finesse_gate(finessePaths, remote_user,
 
 def make_run_finesse_local(finessePaths):
     """
-    Makes the function that runs FINESSE on a remote server that needs to be
-    reached through a gate server. It uses the Unix shell command ssh and
-    assumes login is passwordless (for example, using ssh keys)
-    FINESSE needs to be installed on the remote_server.
+    Makes the function that runs FINESSE locally. On Linux, this uses
+    the /bin/sh shell.
     """
     def run_finesse_local(input, result):
         command = ["export PATH=$PATH:$HOME/usr/local/bin && cd " + \
