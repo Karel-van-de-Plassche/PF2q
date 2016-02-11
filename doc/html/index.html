@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>PF2q: Main Page</title>
+<title>PF2q: PF2q</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,13 +76,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">PF2q Documentation</div>  </div>
+<div class="title">PF2q </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p>PF2q is a tool that works together with FINESSE to reconstruct 2d plasma equilibria. FINESSE, FINite Element Solver for Stationary Equilibria, computes axisymmetric magneto-hydrodynamic equilibria in a coordinate system known as straight field line coordinates, a system in which lines of constant poloidal and toroidal flux appear straight. With PF2q, you can enter an F:=RB_tor and pressure-profile into FINESSE. PF2q will then run FINESSE so multiple parameters, for example the safety factor, pressure and density, are obtained. However, the experimenter might for example be looking for a different safety factor profile than given by FINESSE. Running FINESSE is computationally intensive and the relation between in- and output is sometimes non-intuitive, making it hard to find the right input for the desired output. With PF2q, he/she can change the input profiles, and PF2q will in real-time try to estimate the resulting change in output. When the output is closer to what the experimenter desires, FINESSE can be run again until the FINESSE output matches the desired output.</p>
+<p>PF2q was designed for an internship of the Science and Technology of Nuclear Fusion master from the University of Technology Eindhoven at the Dutch Institute For Fundamental Energy Research (DIFFER)</p>
+<h2>Install</h2>
+<p>PF2q is based on Python 2.7, and thus a Python distribution is needed to run. Python is included in most Linux distributions, and can be easily installed on Windows and Mac. For Windows, I prefer to use Anaconda, a scientific Python package. For Mac, I prefer installing Python using a package manager like HomeBrew. PF2q itself does not have to be installed. Just put your script in the parent folder of <a class="el" href="namespacepf2q.html">pf2q</a> like the example_script.py included in this repository. This repository also includes an example script, which you can edit to run the visual interface of PF2q on your computer. The hardest part is configuring PF2q to be able to run and read out your FINESSE program. For this reason, the easiest way is to adjust the example script with your server/login/path details.</p>
+<p>You also need to install the following packages (if you do not have them yet):</p><ul>
+<li>numpy</li>
+<li>scipy</li>
+<li>matplotlib</li>
+</ul>
+<h2>Content</h2>
+<ul>
+<li><code>./pf2q</code> contains the actual PF2q modules.<ul>
+<li><code><a class="el" href="finesse_8py.html">finesse.py</a></code> and <code><a class="el" href="fem_8py.html">fem.py</a></code> are the hearth of PF2q. They contain functions to run and read FINESSE, as well as the functions use to estimate output and methods to do 1/2d integrals and other FEM procedures.</li>
+<li><code><a class="el" href="pf2qvis_8py.html">pf2qvis.py</a></code> contains all the methods to draw the GUI of PF2q.</li>
+<li><code><a class="el" href="tools_8py.html">tools.py</a></code> and <code><a class="el" href="plot__tools_8py.html">plot_tools.py</a></code> contain some standard convenience functions to calculate and plot various quantities.</li>
+<li><code><a class="el" href="asdex_8py.html">asdex.py</a></code> contains methods to convert data from the ASDEX tokamak to something <code>FINESSE/PF2q</code> can handle.</li>
+<li><code><a class="el" href="unix__functions_8py.html">unix_functions.py</a></code> and <code>windows_function.py</code> provide some function prototypes that are able to run and read out FINESSE.</li>
+</ul>
+</li>
+<li><code>./doc</code> contains a Doxyfile that can be used to generate the documentation found at <a href="https://karel-van-de-plassche.github.io/PF2q">https://karel-van-de-plassche.github.io/PF2q</a>.</li>
+<li><code>./example_files</code> contain some files that are used by the PF2q example_script.py</li>
+<li><code>./final report</code> contains the final report for the internship in PDF format. It also contains some legacy scripts that were used to generate the pictures in the report. These functions are stored for archival purposes only, as they are outdated and thus do not work with the published PF2q.</li>
+</ul>
+<h2>License</h2>
+<p>This program is licensed under the GPLv3 license, allowing you to freely use, modify and redistribute this code. However, I would appreciate it if you let me know you use my code, for example by following/branching this GitHub repository. I would also appreciate a mention in any publication with results obtained by using my code. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 11 2016 00:37:41 for PF2q by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 11 2016 00:54:48 for PF2q by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
