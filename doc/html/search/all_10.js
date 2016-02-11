@@ -6,6 +6,7 @@ var searchData=
   ['read_5fboundary_5ffile',['read_boundary_file',['../classpf2q_1_1finesse_1_1_finesse_input.html#af63403159f441ca79f5eef2cd54c4f8a',1,'pf2q::finesse::FinesseInput']]],
   ['read_5finput_5ffile',['read_input_file',['../classpf2q_1_1finesse_1_1_finesse_input.html#abe09b88d8e27c14eaf872d290afc882d',1,'pf2q::finesse::FinesseInput']]],
   ['read_5foutput_5fdata',['read_output_data',['../classpf2q_1_1finesse_1_1_finesse_session.html#ac09ca9ae3893816dc54fa30f674410d1',1,'pf2q::finesse::FinesseSession']]],
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['relative_5ferror',['relative_error',['../namespacepf2q_1_1tools.html#a585b0eebb4a790ce374cfa3c4441ea8a',1,'pf2q::tools']]],
   ['remove_5fcommands_2etxt',['remove_commands.txt',['../remove__commands_8txt.html',1,'']]],
   ['rescale',['rescale',['../namespacepf2q_1_1tools.html#ad13fc3f6db6a919ce2ab29857c97d7c9',1,'pf2q::tools']]],
