@@ -298,7 +298,7 @@ class FpTool(object):
             input_dict = self.input.load_input_dialog(
                                               initialdir=self.input_path)
         except finesse.FinesseInput.FinesseInputError:
-            print "No file selected"
+            print("No file selected")
         else:
             input_dict.update({"boundary": self.input.boundary})
             self.input = finesse.FinesseInput(input_dict, self.input.boundary,
@@ -445,7 +445,7 @@ class FTool(FpTool):
         self._draw_I_encl_finesse()
 
     def _connect_slider_events(self):
-        for name, slider in self.parts["sliders"].iteritems():
+        for name, slider in self.parts["sliders"].items():
             slider.on_changed(self._update_estimates)
 
     def _define_I_encl(self):

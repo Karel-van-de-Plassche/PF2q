@@ -38,7 +38,7 @@ def smart_diff(narray):
     """
     diff = np.diff(narray, axis=0)
     diff_list = np.empty(diff.shape[1])
-    for j in xrange(diff.shape[1]):
+    for j in range(diff.shape[1]):
         diff_list[j] = narray[0, j] - narray[-1, j]
     diff_simps = np.insert(diff, 0, diff_list, axis=0)
     return diff_simps
@@ -159,7 +159,7 @@ def extrap1d(interpolator):
             return interpolator(x)
 
     def ufunclike(xs):
-        return np.array(map(pointwise, np.array(xs)))
+        return np.array(list(map(pointwise, np.array(xs))))
 
     return ufunclike
 
@@ -182,14 +182,13 @@ if platform == "win32":
         shortcut.save()
 
 
-def combine_badness((tot, ((i_0, bd0), (i_1, bd1),
-                           (i_2, bd2), (i_3, bd3),
-                           (i_4, bd4))), weights=[1, 4, 8, 6, 4]):
+def combine_badness(stuff, weights=[1, 4, 8, 6, 4]):
     """
     Combine the badness array generated with the badness() function into one
     combined badness number. Function is deprecated.
     """
     warnings.warn("Function is deprecated and might give unexpected results")
+    (tot, ((i_0, bd0), (i_1, bd1), (i_2, bd2), (i_3, bd3), (i_4, bd4))) = stuff
     badness = np.average([tot, bd0, bd1, bd2, bd3], weights=weights)
     if bd4 > 0.8:
         badness += bd4

@@ -39,7 +39,7 @@ if __name__ == '__main__':
     elif platform == "darwin":
         user = "Karel"
         mode = "remote_mac"
-    elif platform == "linux2":
+    elif platform == "linux2" or platform == "linux":
         user = "Karel"
         mode = "local_linux"
 

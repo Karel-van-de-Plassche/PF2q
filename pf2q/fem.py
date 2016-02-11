@@ -164,7 +164,7 @@ class TriangularMap(QuadrilateralMap):
         dvalue_encl_ring = np.sum(dvalue_1 * dsurface_1 +
                                   dvalue_2 * dsurface_2, axis=0)
         value_encl = np.empty_like(dvalue_encl_ring)
-        for i in xrange(1, len(dvalue_encl_ring) + 1):
+        for i in range(1, len(dvalue_encl_ring) + 1):
             value_encl[i - 1] = sum(dvalue_encl_ring[0:i])
         return value_encl
 

@@ -12,9 +12,17 @@ import re
 import os
 import subprocess
 import posixpath
+from itertools import chain
+try:
+    # for Python2
+    import Tkinter as tk   ## notice capitalized T in Tkinter
+    import tkFileDialog
+except ImportError:
+    # for Python3
+    import tkinter as tk  ## notice here too
+    from tkinter import filedialog as tkFileDialog
 
-import Tkinter as tk
-import tkFileDialog
+
 import numpy as np
 
 import pf2q.tools as tools
@@ -116,7 +124,8 @@ class FinesseDataSet():
             "Grav": 32,
             "psi_finesse": 38,
             "q_finesse": 39}
-
+    data = collections.OrderedDict(sorted(data.items(),
+                                           key=lambda t: t[1]))
     def __init__(self, dict, a_0, B_phi0):
         """
         Initialize with a dict containing the constants and 2d data sets. Also
@@ -127,7 +136,7 @@ class FinesseDataSet():
         a_0 -- the a_0 tokomak constant
         B_phi0 -- the B_phi0 tokomak constant
         """
-        for name in self.constants.keys() + self.data.keys():
+        for name in chain(self.constants.keys(), self.data.keys()):
             try:
                 setattr(self, name, dict[name])
             except KeyError:
@@ -418,7 +427,7 @@ class FinesseSession():
                         raise FinesseSession.FinesseOutputError(error_msg)
         except FinesseSession.FinesseOutputError:
             finesse_data = None
-            print error_msg
+            print(error_msg)
         else:
             self.run_finesse_function(input_data, self.result_path)
             
@@ -471,7 +480,7 @@ class FinesseSession():
                 matrix[i] = values
             d3_matrix = np.reshape(matrix, [finesse_data["NR_INVERSE"],
                                             finesse_data["NP_INVERSE"], 40])
-            for column_name, column_number in FinesseDataSet.data.iteritems():
+            for column_name, column_number in FinesseDataSet.data.items():
                 finesse_data[column_name] = d3_matrix[:, :, column_number]
 
         return finesse_data
@@ -744,8 +753,7 @@ class EstimationCase():
     An estimation of these parameters can be made with
     FinesseDataSet.assume_dp_dF_correct()
     """
-    def __init__(self,
-                 (finesse_output, B_p_scaling), P_0, P_1, F_0, F_1):
+    def __init__(self, finesse_output_B_p_scaling, P_0, P_1, F_0, F_1):
         """
         Arguments:
         (finesse_output, B_p_scaling) -- a tuple with:
@@ -756,20 +764,19 @@ class EstimationCase():
         F_0 -- core physical F
         F_1 -- edge physical F
         """
-        self.finesse_output = finesse_output
-        self.B_p_scaling = B_p_scaling
+        self.finesse_output, self.B_p_scaling= finesse_output_B_p_scaling
         self.P_0 = P_0
         self.P_1 = P_1
         self.F_0 = F_0
         self.F_1 = F_1
-        self.Psi_1 = ((finesse_output.a_0 ** 2 * finesse_output.B_phi0) /
-                      (finesse_output.BMAoverB0 * finesse_output.ALPHA))
+        self.Psi_1 = ((self.finesse_output.a_0 ** 2 * self.finesse_output.B_phi0) /
+                      (self.finesse_output.BMAoverB0 * self.finesse_output.ALPHA))
 
     def estimate_q(self, finesse_input):
         """ Estimate q-profile from FINESSE input file
 
         Arguments:
-        finesse_input -- a FINESSE input file (or more precicely a
+        finesse_input -- a FIN         = B_p_scalingESSE input file (or more precicely a
                          FinesseInput instance)
 
         Returns:
