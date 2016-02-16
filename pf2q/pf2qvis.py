@@ -378,7 +378,7 @@ class PTool(FpTool):
         P_0 = self.estimation_case.P_0
         P_1 = self.estimation_case.P_1
         P = np.polyval(self.input.P_tilde_poly, self.psi)
-        self.p = tools.rescale(P, P_0, P_1)
+        self.p, __ = tools.rescale(P, P_0, P_1)
 
     def _connect_slider_events(self):
         for name, slider in self.parts["sliders"].iteritems():
