@@ -418,38 +418,38 @@ class FinesseSession():
         finesse_data -- instance of FinesseDataSet read from FINESSE output
         """
         # Be sure that there are no old .dat files in result_path
-        try:
-            for file in os.listdir(self.result_path):
-                abs_path = os.path.join(self.result_path, file)
-                if file.startswith("finesse"):
-                    if file.endswith(".dat") or file.endswith(".dat.lnk"):
-                        error_msg = "Old .dat file found. Please clear result_path"
-                        raise FinesseSession.FinesseOutputError(error_msg)
-        except FinesseSession.FinesseOutputError:
-            finesse_data = None
-            print(error_msg)
-        else:
-            self.run_finesse_function(input_data, self.result_path)
-            
-            # Read and save the output data
-            worked = False
-            for file in os.listdir(self.result_path):
-                abs_path = os.path.join(self.result_path, file)
-                if file.startswith("finesse"):
-                    if file.endswith(".dat") or file.endswith(".dat.lnk"):
-                        finesse_data = FinesseSession.read_output_data(abs_path)
-                        worked = True
-                    if backup_result:
-                        os.rename(abs_path, abs_path + ".backup")
-                    else:
-                        os.remove(abs_path)
+        #try:
+        for file in os.listdir(self.result_path):
+            abs_path = os.path.join(self.result_path, file)
+            if file.startswith("finesse"):
+                if file.endswith(".dat") or file.endswith(".dat.lnk"):
+                    error_msg = "Old .dat file found. Please clear result_path"
+                    raise FinesseSession.FinesseOutputError(error_msg)
+        #except FinesseSession.FinesseOutputError:
+        #    finesse_data = None
+        #    print(error_msg)
+        #else:
+        self.run_finesse_function(input_data, self.result_path)
 
-            if not worked:
-                error_msg = "Could not find output file. Did FINESSE converge?"
-                raise FinesseSession.FinesseOutputError(error_msg)
+        # Read and save the output data
+        worked = False
+        for file in os.listdir(self.result_path):
+           abs_path = os.path.join(self.result_path, file)
+           if file.startswith("finesse"):
+               if file.endswith(".dat") or file.endswith(".dat.lnk"):
+                   finesse_data = FinesseSession.read_output_data(abs_path)
+                   worked = True
+               if backup_result:
+                   os.rename(abs_path, abs_path + ".backup")
+               else:
+                   os.remove(abs_path)
 
-            finesse_data = FinesseDataSet(finesse_data, input_data.a_0,
-                                          input_data.B_phi0)
+        if not worked:
+           error_msg = "Could not find output file. Did FINESSE converge?"
+           raise FinesseSession.FinesseOutputError(error_msg)
+
+        finesse_data = FinesseDataSet(finesse_data, input_data.a_0,
+                                     input_data.B_phi0)
         return finesse_data
 
     @classmethod
@@ -607,14 +607,14 @@ class FinesseInput:
             output.write(" &FINESSE_PROFILE_PARAMETERS\n")
 
             output.write("    C = " + str(self.F2_tilde_poly[0]))
-            for i in xrange(1, 10):
+            for i in range(1, 10):
                 try:
                     output.write(", " + str(self.F2_tilde_poly[i]))
                 except IndexError:
                     output.write(", 0.0")
             output.write("\n")
             output.write("        " + str(self.P_tilde_poly[0]))
-            for i in xrange(1, 10):
+            for i in range(1, 10):
                 try:
                     output.write(", " + str(self.P_tilde_poly[i]))
                 except IndexError:
@@ -625,7 +625,7 @@ class FinesseInput:
             output.write("        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0\n")
             output.write("        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0\n")
             output.write("    A_N = " + str(self.A_N[0]))
-            for i in xrange(1, 6):
+            for i in range(1, 6):
                 try:
                     output.write(", " + str(self.A_N[i]))
                 except IndexError:

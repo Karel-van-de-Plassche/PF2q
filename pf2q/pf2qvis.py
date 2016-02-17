@@ -339,7 +339,7 @@ class FpTool(object):
                 self.input.A_N[1] = slider.val
 
     def _reset_sliders(self):
-        for name, slider in self.parts["sliders"].iteritems():
+        for name, slider in self.parts["sliders"].items():
             slider.poly.get_axes().cla()
         self._define_sliders()
         self.fig.canvas.draw()
@@ -381,7 +381,7 @@ class PTool(FpTool):
         self.p, __ = tools.rescale(P, P_0, P_1)
 
     def _connect_slider_events(self):
-        for name, slider in self.parts["sliders"].iteritems():
+        for name, slider in self.parts["sliders"].items():
             slider.on_changed(self._update_estimates)
 
     def _define_sliders(self):

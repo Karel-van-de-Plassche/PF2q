@@ -63,7 +63,13 @@ def make_run_finesse_local(finessePaths):
     Makes the function that runs FINESSE locally. On Linux, this uses
     the /bin/sh shell.
     """
-    def run_finesse_local(input, result):
+    def run_finesse_local(input_data, result):
+        local_input = finessePaths.path_module.join(finessePaths.INPUT_path, "finesse.inp")
+        local_boundary = finessePaths.path_module.join(finessePaths.DATA_path, "boundary.dat")
+        input_data.input_to_file(local_input)
+        input_data.boundary_to_file(local_boundary)
+
+
         command = ["export PATH=$PATH:$HOME/usr/local/bin && cd " + \
                    finessePaths.finesse_case_path + " && finesse"]
         subprocess.check_call(command, shell=True)
