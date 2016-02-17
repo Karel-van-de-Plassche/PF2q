@@ -543,20 +543,20 @@ class FinesseInput:
                 elif words[0] == "C":
                     reading_poly = True
                     poly = []
-                    for i in xrange(10):
+                    for i in range(10):
                         poly.append(float(words[-1 - i]))
                     finesse_input_dict["F2_tilde_poly"] = poly
                     n_poly = 1
                 elif reading_poly:
                     if n_poly == 1:
                         poly = []
-                        for i in xrange(10):
+                        for i in range(10):
                             poly.append(float(words[-1 - i]))
                         finesse_input_dict["P_tilde_poly"] = poly
                         reading_poly = False
                 elif words[0] == "A_N":
                     A_N = []
-                    for i in xrange(6):
+                    for i in range(6):
                         A_N.append(float(words[2 + i]))
                     finesse_input_dict["A_N"] = A_N
                 elif words[0] == "SIGN_I":
